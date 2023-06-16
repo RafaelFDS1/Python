@@ -1,0 +1,20 @@
+name: Python application
+
+on:
+  push:
+    branches: [ "QA" ]
+  pull_request:
+    branches: [ "QA" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Render Deployment
+      uses: johnbeynon/render-deploy-action@v0.0.8
+      with:
+        service-id: ${{ secrets.MY_RENDER_SERVICE_ID }}
+        api-key: ${{ secrets.MY_QA_API_KEY }}
